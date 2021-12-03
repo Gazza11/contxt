@@ -1,14 +1,14 @@
 import ListItem from "./ListItem"
 
-const CharacterList = ({characters}) => {
+const CharacterList = ({characters, onCharacterClick}) => {
 
     const characterItems = characters.map((character, index) => {
-        return <ListItem character={character} key={index} />
+        return <ListItem character={character} key={index} onCharacterClick={onCharacterClick}/>
     })
 
     return(
         <div>
-            <ul>
+            <ul className='character-items'>
                 {characterItems}
             </ul>
         </div>
