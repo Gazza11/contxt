@@ -9,7 +9,9 @@ const ListItem = ({character, onCharacterClick}) => {
             <h2 onClick={handleClick} className='capitalise'>
                 <a>{character.name}</a>
             </h2>
-            <img src={character.img} width="240" height="300" alt='{character}'></img>
+            <a onClick={handleClick}>
+                <img src={character.img} width="240" height="300" alt='{character}'></img>
+            </a>
         </li>
     )
 }
