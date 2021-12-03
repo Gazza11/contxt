@@ -41,11 +41,18 @@ const filterByName = (searchTerm) => {
     setFilteredCharacters(filteredCharacters)
 }
 
+const filterByGender = (gender) => {
+    let filteredCharactersByGender = characters.filter((character) => {
+        return character.gender.indexOf(gender) > -1
+    })
+    setFilteredCharacters(filteredCharactersByGender)
+}
+
 
     return (
         <div>
             <Header/>
-            <Filter filterByName={filterByName}/>
+            <Filter filterByName={filterByName} filterByGender={filterByGender}/>
             <div className='Main-Body'>
                 <CharacterList characters = {filteredCharacters} onCharacterClick={onCharacterClick}/>
                 {selectedCharacter ? <CharacterDetail selectedCharacter={selectedCharacter} /> : null}
