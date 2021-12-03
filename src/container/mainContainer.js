@@ -33,7 +33,10 @@ const onCharacterClick = function (character){
     }
 }
 
-const filterByName = (searchTerm) => {
+const filterByName = (searchTerm, gender) => {
+    if(!searchTerm && !gender){
+        setFilteredCharacters(characters)
+    }
     const filteredCharactersByName = characters.filter((character) => {
         return character.name.indexOf(searchTerm) > -1
     })
@@ -42,8 +45,7 @@ const filterByName = (searchTerm) => {
 }
 
 const filterByGender = (gender) => {
-    setFilteredCharacters(characters)
-    let filteredCharactersByGender = filteredCharacters.filter((character) => {
+    let filteredCharactersByGender = characters.filter((character) => {
         return character.gender.indexOf(gender) > -1
     })
     setFilteredCharacters(filteredCharactersByGender)

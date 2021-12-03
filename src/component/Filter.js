@@ -6,7 +6,7 @@ const Filter = ({filterByName, filterByGender, resetFilters}) => {
     const [searchTermGender, setSearchTermGender] = useState("")
 
     useEffect(() => {
-        filterByName(searchTerm)
+        filterByName(searchTerm, searchTermGender)
     }, [searchTerm])
 
     useEffect(() => {
