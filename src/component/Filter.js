@@ -1,6 +1,6 @@
 import {useState, useEffect} from "react"
 
-const Filter = ({filterByName, filterByGender}) => {
+const Filter = ({filterByName, filterByGender, resetFilters}) => {
     
     const [searchTerm, setSearchTerm] = useState("")
     const [searchTermGender, setSearchTermGender] = useState("")
@@ -29,14 +29,15 @@ const Filter = ({filterByName, filterByGender}) => {
     
     return(
         <div>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} id="search-name">
                 <input type='text' name='search' placeholder='Filter by Name' onChange={changeSearchTerm}></input>
             </form>
-            <select onChange={changeSearchTermGender}>
+            <select onChange={changeSearchTermGender} id="search-gender">
                 <option value="">Select a Gender</option>
                 <option value='female'>Female</option>
                 <option value='male'>Male</option>
             </select>
+            <button onClick={resetFilters}>Reset Filters</button>
         </div>
     )
 }

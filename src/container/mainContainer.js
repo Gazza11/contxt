@@ -34,25 +34,32 @@ const onCharacterClick = function (character){
 }
 
 const filterByName = (searchTerm) => {
-    const filteredCharacters = characters.filter((character) => {
+    const filteredCharactersByName = characters.filter((character) => {
         return character.name.indexOf(searchTerm) > -1
     })
 
-    setFilteredCharacters(filteredCharacters)
+    setFilteredCharacters(filteredCharactersByName)
 }
 
 const filterByGender = (gender) => {
-    let filteredCharactersByGender = characters.filter((character) => {
+    setFilteredCharacters(characters)
+    let filteredCharactersByGender = filteredCharacters.filter((character) => {
         return character.gender.indexOf(gender) > -1
     })
     setFilteredCharacters(filteredCharactersByGender)
+}
+
+const resetFilters = () => {
+    setFilteredCharacters(characters)
+    document.getElementById("search-name").reset()
+    document.getElementById("search-gender").selectedIndex = "0"
 }
 
 
     return (
         <div>
             <Header/>
-            <Filter filterByName={filterByName} filterByGender={filterByGender}/>
+            <Filter filterByName={filterByName} filterByGender={filterByGender} resetFilters={resetFilters}/>
             <div className='Main-Body'>
                 <CharacterList characters = {filteredCharacters} onCharacterClick={onCharacterClick}/>
                 {selectedCharacter ? <CharacterDetail selectedCharacter={selectedCharacter} /> : null}
