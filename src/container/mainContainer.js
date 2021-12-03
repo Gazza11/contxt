@@ -2,11 +2,13 @@ import {useState, useEffect} from 'react'
 import CharacterList from '../component/CharacterList'
 import Header from '../component/Header'
 import CharacterDetail from '../component/CharacterDetail'
+import Filter from '../component/Filter'
 
 const MainContainer = () => {
 
     const [characters, setCharacters] = useState([])
     const [selectedCharacter, setSelectedCharacter] = useState(null)
+    const [filteredCharacters, setFilteredCharacters] = useState([])
 
     useEffect(() => {
         getCharacters()
@@ -18,6 +20,7 @@ const MainContainer = () => {
         .then(result => result.json())
         .then(characters => {
             setCharacters(characters)
+            setFilteredCharacters(characters)
         })
     }
 
@@ -30,11 +33,21 @@ const onCharacterClick = function (character){
     }
 }
 
+const filterByName = (searchTerm) => {
+    const filteredCharacters = characters.filter((character) => {
+        return character.name.indexOf(searchTerm) > -1
+    })
+
+    setFilteredCharacters(filteredCharacters)
+}
+
+
     return (
         <div>
             <Header/>
+            <Filter filterByName={filterByName}/>
             <div className='Main-Body'>
-                <CharacterList characters = {characters} onCharacterClick={onCharacterClick}/>
+                <CharacterList characters = {filteredCharacters} onCharacterClick={onCharacterClick}/>
                 {selectedCharacter ? <CharacterDetail selectedCharacter={selectedCharacter} /> : null}
             </div>
         </div>
