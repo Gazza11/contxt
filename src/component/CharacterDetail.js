@@ -1,4 +1,5 @@
 const CharacterDetail = ({selectedCharacter}) => {
+    
     return(
         <div className='fixed-details'>
             <h2 className='capitalise'>Character Abilities - {selectedCharacter.name}</h2>
@@ -9,7 +10,7 @@ const CharacterDetail = ({selectedCharacter}) => {
                         <p> - {power.description}</p>
                         <br></br>
                     </div>
-                )): "No Powers"}
+                )) : "No Powers"}
             </h4>
         </div>
     )

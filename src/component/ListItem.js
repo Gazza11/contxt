@@ -3,6 +3,7 @@ const ListItem = ({character, onCharacterClick}) => {
     const handleClick = function () {
         onCharacterClick(character)
     }
+    
     return(
 
         <li>

@@ -14,6 +14,7 @@ const MainContainer = () => {
         getCharacters()
     }, [])
 
+
     // Intial call to the API
     const getCharacters = function () {
         fetch('https://psychonauts-api.herokuapp.com/api/characters?limit=20')
@@ -26,31 +27,33 @@ const MainContainer = () => {
 
 const onCharacterClick = function (character){
     setSelectedCharacter(character)
-    console.log('character selected')
-    console.log(selectedCharacter)
     if (selectedCharacter === character) {
         setSelectedCharacter(null)
     }
 }
 
+// Filter by Name
 const filterByName = (searchTerm, gender) => {
     if(!searchTerm && !gender){
         setFilteredCharacters(characters)
     }
-    const filteredCharactersByName = characters.filter((character) => {
+
+    const filteredCharactersByName = filteredCharacters.filter((character) => {
         return character.name.indexOf(searchTerm) > -1
     })
 
     setFilteredCharacters(filteredCharactersByName)
 }
 
+// Filter by Gender
 const filterByGender = (gender) => {
-    let filteredCharactersByGender = characters.filter((character) => {
+    const filteredCharactersByGender = filteredCharacters.filter((character) => {
         return character.gender.indexOf(gender) > -1
     })
     setFilteredCharacters(filteredCharactersByGender)
 }
 
+// Reset Filters
 const resetFilters = () => {
     setFilteredCharacters(characters)
     document.getElementById("search-name").reset()
